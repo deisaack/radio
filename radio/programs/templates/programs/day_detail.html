@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{{ day }}</h1>
+<h3>Programs</h3>
+    {% for program in today_programs %}
+        <b>{{ forloop.counter }}</b>: {{ program }} <br>
+    {% endfor %}
+
+    <hr><h3>Times</h3>
+    {% for time in time_list %}
+        {{ forloop.counter }}: {{ time.program }}    at {{ time.start }} to {{ time.end }} <br>
+    {% endfor %}
+
+{% endblock %}

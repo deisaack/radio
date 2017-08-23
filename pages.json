@@ -1,0 +1,347 @@
+[
+{
+    "model": "articles.article",
+    "pk": 1,
+    "fields": {
+        "title": "smirn off",
+        "slug": "smirn-off",
+        "content": "<pre>\r\n<code class=\"language-python\">   self.object = form.save(commit=False)\r\n        rank = form.cleaned_data.get('rank')\r\n        self.object.superior = self.request.user\r\n        self.object.evaluation.total += int(rank)\r\n        self.object.evaluation.save()\r\n        self.object.save()\r\n        this_eval = form.cleaned_data.get('evaluation')\r\n        this_percentage = this_eval.percentage\r\n        this_total = this_eval.total\r\n        new_total = this_total\r\n        pk = this_eval.pk\r\n        qns = Question.objects.all().filter(evaluation=pk).count()\r\n        new_percentage = (new_total*20)/qns\r\n        self.object.evaluation.percentage = new_percentage\r\n        self.object.evaluation.save()\r\n        # print('The evalluations total is %r, and it\\'s percentage is %r but we should update to %r because of \\n'\r\n        #       '%d questions' % (this_total, this_percentage, new_percentage, qns))\r\n        return super(EvaluationImproveFormView, self).form_valid(form)\r\n</code></pre>\r\n\r\n<p>&nbsp;</p>",
+        "status": "D",
+        "creator": 1,
+        "publish": "2017-08-15",
+        "created": "2017-08-14T10:50:13.983Z",
+        "updated": "2017-08-14T10:50:14.290Z",
+        "updator": null
+    }
+},
+{
+    "model": "articles.article",
+    "pk": 2,
+    "fields": {
+        "title": "smirn off",
+        "slug": "smirn-off-2",
+        "content": "<pre>\r\n<code class=\"language-python\">   self.object = form.save(commit=False)\r\n        rank = form.cleaned_data.get('rank')\r\n        self.object.superior = self.request.user\r\n        self.object.evaluation.total += int(rank)\r\n        self.object.evaluation.save()\r\n        self.object.save()\r\n        this_eval = form.cleaned_data.get('evaluation')\r\n        this_percentage = this_eval.percentage\r\n        this_total = this_eval.total\r\n        new_total = this_total\r\n        pk = this_eval.pk\r\n        qns = Question.objects.all().filter(evaluation=pk).count()\r\n        new_percentage = (new_total*20)/qns\r\n        self.object.evaluation.percentage = new_percentage\r\n        self.object.evaluation.save()\r\n        # print('The evalluations total is %r, and it\\'s percentage is %r but we should update to %r because of \\n'\r\n        #       '%d questions' % (this_total, this_percentage, new_percentage, qns))\r\n        return super(EvaluationImproveFormView, self).form_valid(form)\r\n</code></pre>\r\n\r\n<p>&nbsp;</p>",
+        "status": "D",
+        "creator": 1,
+        "publish": "2017-08-15",
+        "created": "2017-08-14T10:52:52.869Z",
+        "updated": "2017-08-14T10:52:53.095Z",
+        "updator": null
+    }
+},
+{
+    "model": "articles.article",
+    "pk": 3,
+    "fields": {
+        "title": "Digital Marketplace",
+        "slug": "digital-marketplace",
+        "content": "<h2>Development workflow</h2>\r\n\r\n<p>You should be inside the&nbsp;<code>django-docker</code>&nbsp;folder, which contains the&nbsp;<code>Dockerfile</code>&nbsp;and this README.</p>\r\n\r\n<p>Here&#39;s the outline of the workflow:</p>\r\n\r\n<pre>\r\n<code>1. Run the Docker container and mount the local directory containing the Django project code\r\n2. Make changes and test them on the container\r\n3. Commit the changes to the Git repo\r\n</code></pre>\r\n\r\n<p>Start the Docker container:</p>\r\n\r\n<pre>\r\n<code>$ docker run -d -p 80:80 -v $(pwd):/code --env DJANGO_PRODUCTION=false &lt;yourname&gt;/django-docker\r\n</code></pre>\r\n\r\n<p>Here&#39;s what the flags do:</p>\r\n\r\n<ul>\r\n\t<li><code>-d</code>: Run in detached mode (i.e., Docker will no longer listen to the console where you ran&nbsp;<code>docker run</code>).</li>\r\n\t<li><code>-p 80:80</code>: Map port 80 on the host to port 80 on the container. This lets you communicate with Nginx from your browser.</li>\r\n\t<li><code>-v $(pwd):/code</code>: Mount the current directory as a volume at&nbsp;<code>/code</code>&nbsp;on the Docker container. This lets you edit the code while the container is running so you can test it without having to rebuild the image.</li>\r\n\t<li><code>--env DJANGO_PRODUCTION=false</code>: Production settings are enabled by default in&nbsp;<code>settings.py</code>&nbsp;and defined in&nbsp;<code>settings_production.py</code>. This flag prevents&nbsp;<code>settings_production.py</code>&nbsp;from being loaded, which lets you have separate settings for local development (e.g.,&nbsp;<code>DEBUG = True</code>&nbsp;and a local development database).</li>\r\n</ul>\r\n\r\n<p>Point your browser to your Docker host&#39;s IP address. You should see the &quot;Hello, world!&quot; message again.</p>\r\n\r\n<p>Point your browser to&nbsp;<code>http://&lt;ip address&gt;/admin/</code>. You should be able to log in with username&nbsp;<code>root</code>&nbsp;and the root password you set in&nbsp;<code>config.ini</code>.</p>\r\n\r\n<p>In your editor of choice, open&nbsp;<code>django_docker/hello_world/templates/hello_world/index.html</code>. It looks like this:</p>\r\n\r\n<pre>\r\n<code>{% extends 'base.html' %}\r\n\r\n{% load staticfiles %}\r\n\r\n{% block content %}\r\n&lt;p class=\"hello-world\"&gt;Hello, world!&lt;/p&gt;\r\n{% endblock content %} \r\n</code></pre>\r\n\r\n<p>Edit the&nbsp;<code>&lt;p&gt;</code>&nbsp;tag to read&nbsp;<code>Hello again, world!</code>&nbsp;and save the file. Refresh the page in your browser and you should see the updated message.</p>\r\n\r\n<p>Next, commit this change to your repo and push it:</p>\r\n\r\n<pre>\r\n<code>$ git commit -am 'Add \"Hello again, world!\"'\r\n$ git push origin master\r\n</code></pre>\r\n\r\n<p>Run&nbsp;<code>docker ps</code>&nbsp;to get the&nbsp;<code>CONTAINER ID</code>&nbsp;and use&nbsp;<code>docker kill</code>&nbsp;to stop the container:</p>\r\n\r\n<pre>\r\n<code>$ docker ps\r\nCONTAINER ID        IMAGE                      COMMAND                  CREATED             STATUS              PORTS                          NAMES\r\n39b60b7eb954        &lt;yourname&gt;/django-docker   \"/usr/bin/supervisord\"   4 minutes ago       Up 3 minutes        0.0.0.0:80-&gt;80/tcp, 8000/tcp   elegant_banach\r\n$ docker kill 39b60b7eb954\r\n</code></pre>\r\n\r\n<h3>Editing files</h3>\r\n\r\n<p>Unlike the Django development server, this configuration won&#39;t automatically detect and load changes in Python files. You&#39;ll have to manually refresh the server when you make changes (except for templates, which will automatically update). First, open a shell on the dev server:</p>\r\n\r\n<pre>\r\n<code>$ docker exec -ti &lt;CONTAINER ID&gt; /bin/bash\r\n</code></pre>\r\n\r\n<p>Then, each time you change a Python file, run:</p>\r\n\r\n<pre>\r\n<code>$ supervisorctl restart gunicorn\r\n</code></pre>\r\n\r\n<h3>Updating models</h3>\r\n\r\n<p>When you update your models,&nbsp;<code>django-docker</code>&nbsp;will automatically run&nbsp;<code>python manage.py makemigrations</code>&nbsp;and&nbsp;<code>python manage.py migrate</code>&nbsp;the next time you run the Docker image. There are a few caveats:</p>\r\n\r\n<ul>\r\n\t<li>Don&#39;t delete the&nbsp;<code>migrations/</code>&nbsp;folders inside your apps (or else you&#39;ll have to do something like editing&nbsp;<code>initialize.sh</code>&nbsp;to add&nbsp;<code>migrate --fake-initial</code>&mdash;ugh)</li>\r\n\t<li>When adding new model fields, remember to set a&nbsp;<code>default</code>&nbsp;(or else&nbsp;<code>migrate</code>&nbsp;will fail)</li>\r\n</ul>\r\n\r\n<p>Still, there will be times when you need to create migrations by hand. Django currently doesn&#39;t support fully automated migration creation&mdash;for instance, you might get a prompt like this:</p>\r\n\r\n<pre>\r\n<code>Did you rename job.cost to job.paid (a IntegerField)? [y/N]\r\n</code></pre>\r\n\r\n<p>As far as I know, this can&#39;t be automated. To handle this scenario, open a shell on your development Docker machine:</p>\r\n\r\n<pre>\r\n<code>$ docker run -ti -p 80:80 -v $(pwd):/code --env DJANGO_PRODUCTION=false &lt;yourname&gt;/django-docker /bin/bash\r\n</code></pre>\r\n\r\n<p>Then, start the database server and invoke&nbsp;<code>initialize.sh</code>:</p>\r\n\r\n<pre>\r\n<code>$ /etc/init.d/mysql start\r\n$ ./initialize.sh\r\n</code></pre>\r\n\r\n<p>This will call&nbsp;<code>python manage.py makemigrations</code>&nbsp;and prompt you if necessary. It will create the necessary migration files. The migration will be automatically applied the next time you run the Docker image in production. (This can be scary. Make a clean backup of your code and database&nbsp;<em>before</em>&nbsp;applying the migration in production in case you need to roll back.)</p>",
+        "status": "D",
+        "creator": 1,
+        "publish": "2017-08-15",
+        "created": "2017-08-14T11:41:59.759Z",
+        "updated": "2017-08-14T11:42:00.005Z",
+        "updator": null
+    }
+},
+{
+    "model": "articles.article",
+    "pk": 4,
+    "fields": {
+        "title": "Digital Marketplace",
+        "slug": "digital-marketplace-2",
+        "content": "<h2>Development workflow</h2>\r\n\r\n<p>You should be inside the&nbsp;<code>django-docker</code>&nbsp;folder, which contains the&nbsp;<code>Dockerfile</code>&nbsp;and this README.</p>\r\n\r\n<p>Here&#39;s the outline of the workflow:</p>\r\n\r\n<pre>\r\n<code>1. Run the Docker container and mount the local directory containing the Django project code\r\n2. Make changes and test them on the container\r\n3. Commit the changes to the Git repo\r\n</code></pre>\r\n\r\n<p>Start the Docker container:</p>\r\n\r\n<pre>\r\n<code>$ docker run -d -p 80:80 -v $(pwd):/code --env DJANGO_PRODUCTION=false &lt;yourname&gt;/django-docker\r\n</code></pre>\r\n\r\n<p>Here&#39;s what the flags do:</p>\r\n\r\n<ul>\r\n\t<li><code>-d</code>: Run in detached mode (i.e., Docker will no longer listen to the console where you ran&nbsp;<code>docker run</code>).</li>\r\n\t<li><code>-p 80:80</code>: Map port 80 on the host to port 80 on the container. This lets you communicate with Nginx from your browser.</li>\r\n\t<li><code>-v $(pwd):/code</code>: Mount the current directory as a volume at&nbsp;<code>/code</code>&nbsp;on the Docker container. This lets you edit the code while the container is running so you can test it without having to rebuild the image.</li>\r\n\t<li><code>--env DJANGO_PRODUCTION=false</code>: Production settings are enabled by default in&nbsp;<code>settings.py</code>&nbsp;and defined in&nbsp;<code>settings_production.py</code>. This flag prevents&nbsp;<code>settings_production.py</code>&nbsp;from being loaded, which lets you have separate settings for local development (e.g.,&nbsp;<code>DEBUG = True</code>&nbsp;and a local development database).</li>\r\n</ul>\r\n\r\n<p>Point your browser to your Docker host&#39;s IP address. You should see the &quot;Hello, world!&quot; message again.</p>\r\n\r\n<p>Point your browser to&nbsp;<code>http://&lt;ip address&gt;/admin/</code>. You should be able to log in with username&nbsp;<code>root</code>&nbsp;and the root password you set in&nbsp;<code>config.ini</code>.</p>\r\n\r\n<p>In your editor of choice, open&nbsp;<code>django_docker/hello_world/templates/hello_world/index.html</code>. It looks like this:</p>\r\n\r\n<pre>\r\n<code>{% extends 'base.html' %}\r\n\r\n{% load staticfiles %}\r\n\r\n{% block content %}\r\n&lt;p class=\"hello-world\"&gt;Hello, world!&lt;/p&gt;\r\n{% endblock content %} \r\n</code></pre>\r\n\r\n<p>Edit the&nbsp;<code>&lt;p&gt;</code>&nbsp;tag to read&nbsp;<code>Hello again, world!</code>&nbsp;and save the file. Refresh the page in your browser and you should see the updated message.</p>\r\n\r\n<p>Next, commit this change to your repo and push it:</p>\r\n\r\n<pre>\r\n<code>$ git commit -am 'Add \"Hello again, world!\"'\r\n$ git push origin master\r\n</code></pre>\r\n\r\n<p>Run&nbsp;<code>docker ps</code>&nbsp;to get the&nbsp;<code>CONTAINER ID</code>&nbsp;and use&nbsp;<code>docker kill</code>&nbsp;to stop the container:</p>\r\n\r\n<pre>\r\n<code>$ docker ps\r\nCONTAINER ID        IMAGE                      COMMAND                  CREATED             STATUS              PORTS                          NAMES\r\n39b60b7eb954        &lt;yourname&gt;/django-docker   \"/usr/bin/supervisord\"   4 minutes ago       Up 3 minutes        0.0.0.0:80-&gt;80/tcp, 8000/tcp   elegant_banach\r\n$ docker kill 39b60b7eb954\r\n</code></pre>\r\n\r\n<h3>Editing files</h3>\r\n\r\n<p>Unlike the Django development server, this configuration won&#39;t automatically detect and load changes in Python files. You&#39;ll have to manually refresh the server when you make changes (except for templates, which will automatically update). First, open a shell on the dev server:</p>\r\n\r\n<pre>\r\n<code>$ docker exec -ti &lt;CONTAINER ID&gt; /bin/bash\r\n</code></pre>\r\n\r\n<p>Then, each time you change a Python file, run:</p>\r\n\r\n<pre>\r\n<code>$ supervisorctl restart gunicorn\r\n</code></pre>\r\n\r\n<h3>Updating models</h3>\r\n\r\n<p>When you update your models,&nbsp;<code>django-docker</code>&nbsp;will automatically run&nbsp;<code>python manage.py makemigrations</code>&nbsp;and&nbsp;<code>python manage.py migrate</code>&nbsp;the next time you run the Docker image. There are a few caveats:</p>\r\n\r\n<ul>\r\n\t<li>Don&#39;t delete the&nbsp;<code>migrations/</code>&nbsp;folders inside your apps (or else you&#39;ll have to do something like editing&nbsp;<code>initialize.sh</code>&nbsp;to add&nbsp;<code>migrate --fake-initial</code>&mdash;ugh)</li>\r\n\t<li>When adding new model fields, remember to set a&nbsp;<code>default</code>&nbsp;(or else&nbsp;<code>migrate</code>&nbsp;will fail)</li>\r\n</ul>\r\n\r\n<p>Still, there will be times when you need to create migrations by hand. Django currently doesn&#39;t support fully automated migration creation&mdash;for instance, you might get a prompt like this:</p>\r\n\r\n<pre>\r\n<code>Did you rename job.cost to job.paid (a IntegerField)? [y/N]\r\n</code></pre>\r\n\r\n<p>As far as I know, this can&#39;t be automated. To handle this scenario, open a shell on your development Docker machine:</p>\r\n\r\n<pre>\r\n<code>$ docker run -ti -p 80:80 -v $(pwd):/code --env DJANGO_PRODUCTION=false &lt;yourname&gt;/django-docker /bin/bash\r\n</code></pre>\r\n\r\n<p>Then, start the database server and invoke&nbsp;<code>initialize.sh</code>:</p>\r\n\r\n<pre>\r\n<code>$ /etc/init.d/mysql start\r\n$ ./initialize.sh\r\n</code></pre>\r\n\r\n<p>This will call&nbsp;<code>python manage.py makemigrations</code>&nbsp;and prompt you if necessary. It will create the necessary migration files. The migration will be automatically applied the next time you run the Docker image in production. (This can be scary. Make a clean backup of your code and database&nbsp;<em>before</em>&nbsp;applying the migration in production in case you need to roll back.)</p>",
+        "status": "D",
+        "creator": 1,
+        "publish": "2017-08-15",
+        "created": "2017-08-14T11:42:28.132Z",
+        "updated": "2017-08-14T11:42:28.366Z",
+        "updator": null
+    }
+},
+{
+    "model": "articles.article",
+    "pk": 5,
+    "fields": {
+        "title": "Digital Marketplace",
+        "slug": "digital-marketplace-3",
+        "content": "<article itemprop=\"text\">\r\n<h2>Deployment</h2>\r\n\r\n<p>If you don&#39;t have a server running yet, start one. An easy and cheap option is the $5/month virtual server from Digital Ocean. They have Ubuntu images with Docker preinstalled.</p>\r\n\r\n<p>You&#39;ll also need a separate database server. Two good options are Google Cloud SQL and Amazon RDS. Be sure to create a database named&nbsp;<code>django</code>&nbsp;(or anything else, as long as it matches&nbsp;<code>DATABASE_NAME</code>&nbsp;in&nbsp;<code>config.ini</code>). Also make sure to create a database user that can access this database. Finally, make sure that the production server is authorized to access the database server. (An easy way to verify all of this is to SSH to the production server and run&nbsp;<code>mysql -h &lt;db server ip address&gt; -uroot -p</code>&nbsp;and then&nbsp;<code>mysql&gt; CREATE DATABASE django;</code>.)</p>\r\n\r\n<p><code>config.ini</code>&nbsp;contains settings for production (e.g., the web server&#39;s IP address and the database details). Edit these values now.</p>\r\n\r\n<p>If you want to enable additional production settings, you can add them to&nbsp;<code>django_docker/django_docker/settings_production.py</code>.</p>\r\n\r\n<p>If your repository is private on Docker Hub, you&#39;ll have to run&nbsp;<code>docker login</code>&nbsp;first on the remote host.</p>\r\n\r\n<p>The project can be deployed with a single Fabric command. Make sure Fabric is installed (do&nbsp;<code>pip install fabric</code>), and then run:</p>\r\n\r\n<pre>\r\n<code>$ fab deploy_production\r\n</code></pre>\r\n\r\n<p>This builds the Docker image, pushes it to Docker Hub, pulls it on the production server, and starts a container with the production settings.</p>\r\n\r\n<p>Verify that your production settings (not the development settings!) are active. Navigate to&nbsp;<code>http://&lt;ip address&gt;/spamalot</code>. You should see the basic Nginx &quot;not found&quot; page. If you see the full Django error page, that means that&nbsp;<code>DEBUG = True</code>, which probably means that your production settings are not loaded.</p>\r\n</article>\r\n\r\n<ul>\r\n\t<li><a data-ga-click=\"Footer, go to contact, text:contact\" href=\"https://github.com/contact\">Contact GitHub</a></li>\r\n\t<li><a data-ga-click=\"Footer, go to api, text:api\" href=\"https://developer.github.com/\">API</a></li>\r\n\t<li><a data-ga-click=\"Footer, go to training, text:training\" href=\"https://training.github.com/\">Training</a></li>\r\n\t<li><a data-ga-click=\"Footer, go to shop, text:shop\" href=\"https://shop.github.com/\">Shop</a></li>\r\n\t<li><a data-ga-click=\"Footer, go to blog, text:blog\" href=\"https://github.com/blog\">Blog</a></li>\r\n\t<li><a data-ga-click=\"Footer, go to about, text:about\" href=\"https://github.com/about\">About</a></li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<ul>\r\n\t<li>&copy; 2017&nbsp;GitHub, Inc.</li>\r\n\t<li><a data-ga-click=\"Footer, go to terms, text:terms\" href=\"https://github.com/site/terms\">Terms</a></li>\r\n\t<li><a data-ga-click=\"Footer, go to privacy, text:privacy\" href=\"https://github.com/site/privacy\">Privacy</a></li>\r\n\t<li><a data-ga-click=\"Footer, go to security, text:security\" href=\"https://github.com/security\">Security</a></li>\r\n\t<li><a data-ga-click=\"Footer, go to status, text:status\" href=\"https://status.github.com/\">Status</a></li>\r\n\t<li><a data-ga-click=\"Footer, go to help, text:help\" href=\"https://help.github.com/\">Help</a></li>\r\n</ul>\r\n\r\n<p>&nbsp;<button aria-label=\"Dismiss error\" type=\"button\"></button>&nbsp;You can&#39;t perform that action at this time.</p>\r\n\r\n<p>&nbsp;You signed in with another tab or window.&nbsp;<a href=\"https://github.com/morninj/django-docker\">Reload</a>&nbsp;to refresh your session.&nbsp;You signed out in another tab or window.&nbsp;<a href=\"https://github.com/morninj/django-docker\">Reload</a>&nbsp;to refresh your session.</p>",
+        "status": "D",
+        "creator": 1,
+        "publish": "2017-08-15",
+        "created": "2017-08-14T11:44:20.336Z",
+        "updated": "2017-08-14T11:44:20.504Z",
+        "updator": null
+    }
+},
+{
+    "model": "articles.article",
+    "pk": 6,
+    "fields": {
+        "title": "Digital Marketplace",
+        "slug": "digital-marketplace-4",
+        "content": "<article itemprop=\"text\">\r\n<h2>Deployment</h2>\r\n\r\n<p>If you don&#39;t have a server running yet, start one. An easy and cheap option is the $5/month virtual server from Digital Ocean. They have Ubuntu images with Docker preinstalled.</p>\r\n\r\n<p>You&#39;ll also need a separate database server. Two good options are Google Cloud SQL and Amazon RDS. Be sure to create a database named&nbsp;<code>django</code>&nbsp;(or anything else, as long as it matches&nbsp;<code>DATABASE_NAME</code>&nbsp;in&nbsp;<code>config.ini</code>). Also make sure to create a database user that can access this database. Finally, make sure that the production server is authorized to access the database server. (An easy way to verify all of this is to SSH to the production server and run&nbsp;<code>mysql -h &lt;db server ip address&gt; -uroot -p</code>&nbsp;and then&nbsp;<code>mysql&gt; CREATE DATABASE django;</code>.)</p>\r\n\r\n<p><code>config.ini</code>&nbsp;contains settings for production (e.g., the web server&#39;s IP address and the database details). Edit these values now.</p>\r\n\r\n<p>If you want to enable additional production settings, you can add them to&nbsp;<code>django_docker/django_docker/settings_production.py</code>.</p>\r\n\r\n<p>If your repository is private on Docker Hub, you&#39;ll have to run&nbsp;<code>docker login</code>&nbsp;first on the remote host.</p>\r\n\r\n<p>The project can be deployed with a single Fabric command. Make sure Fabric is installed (do&nbsp;<code>pip install fabric</code>), and then run:</p>\r\n\r\n<pre>\r\n<code>$ fab deploy_production\r\n</code></pre>\r\n\r\n<p>This builds the Docker image, pushes it to Docker Hub, pulls it on the production server, and starts a container with the production settings.</p>\r\n\r\n<p>Verify that your production settings (not the development settings!) are active. Navigate to&nbsp;<code>http://&lt;ip address&gt;/spamalot</code>. You should see the basic Nginx &quot;not found&quot; page. If you see the full Django error page, that means that&nbsp;<code>DEBUG = True</code>, which probably means that your production settings are not loaded.</p>\r\n</article>\r\n\r\n<ul>\r\n\t<li><a data-ga-click=\"Footer, go to contact, text:contact\" href=\"https://github.com/contact\">Contact GitHub</a></li>\r\n\t<li><a data-ga-click=\"Footer, go to api, text:api\" href=\"https://developer.github.com/\">API</a></li>\r\n\t<li><a data-ga-click=\"Footer, go to training, text:training\" href=\"https://training.github.com/\">Training</a></li>\r\n\t<li><a data-ga-click=\"Footer, go to shop, text:shop\" href=\"https://shop.github.com/\">Shop</a></li>\r\n\t<li><a data-ga-click=\"Footer, go to blog, text:blog\" href=\"https://github.com/blog\">Blog</a></li>\r\n\t<li><a data-ga-click=\"Footer, go to about, text:about\" href=\"https://github.com/about\">About</a></li>\r\n</ul>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<ul>\r\n\t<li>&copy; 2017&nbsp;GitHub, Inc.</li>\r\n\t<li><a data-ga-click=\"Footer, go to terms, text:terms\" href=\"https://github.com/site/terms\">Terms</a></li>\r\n\t<li><a data-ga-click=\"Footer, go to privacy, text:privacy\" href=\"https://github.com/site/privacy\">Privacy</a></li>\r\n\t<li><a data-ga-click=\"Footer, go to security, text:security\" href=\"https://github.com/security\">Security</a></li>\r\n\t<li><a data-ga-click=\"Footer, go to status, text:status\" href=\"https://status.github.com/\">Status</a></li>\r\n\t<li><a data-ga-click=\"Footer, go to help, text:help\" href=\"https://help.github.com/\">Help</a></li>\r\n</ul>\r\n\r\n<p>&nbsp;<button aria-label=\"Dismiss error\" type=\"button\"></button>&nbsp;You can&#39;t perform that action at this time.</p>\r\n\r\n<p>&nbsp;You signed in with another tab or window.&nbsp;<a href=\"https://github.com/morninj/django-docker\">Reload</a>&nbsp;to refresh your session.&nbsp;You signed out in another tab or window.&nbsp;<a href=\"https://github.com/morninj/django-docker\">Reload</a>&nbsp;to refresh your session.</p>",
+        "status": "D",
+        "creator": 1,
+        "publish": "2017-08-15",
+        "created": "2017-08-14T11:47:36.931Z",
+        "updated": "2017-08-14T11:47:37.034Z",
+        "updator": null
+    }
+},
+{
+    "model": "articles.article",
+    "pk": 7,
+    "fields": {
+        "title": "docker guide today",
+        "slug": "docker-guide-today",
+        "content": "<pre>\r\ndef create_tags(self, tags):\r\n    tags = tags.strip()\r\n    tag_list = tags.split(&#39; &#39;)\r\n    for tag in tag_list:\r\n        if tag:\r\n            t, created = Tag.objects.get_or_create(tag=tag.lower(),\r\n                                                   article=self)\r\n</pre>",
+        "status": "D",
+        "creator": 1,
+        "publish": "2017-08-15",
+        "created": "2017-08-14T11:50:09.670Z",
+        "updated": "2017-08-14T11:50:09.838Z",
+        "updator": null
+    }
+},
+{
+    "model": "articles.article",
+    "pk": 8,
+    "fields": {
+        "title": "powerful data",
+        "slug": "powerful-data",
+        "content": "<h1>Glossary</h1>\r\n\r\n<dl>\r\n\t<dt id=\"term-concrete-model\">concrete model</dt>\r\n\t<dd>A non-abstract (<a href=\"ref/models/options.html#django.db.models.Options.abstract\" title=\"django.db.models.Options.abstract\"><code>abstract=False</code></a>) model.</dd>\r\n\t<dt id=\"term-field\">field</dt>\r\n\t<dt><span style=\"font-family:Times New Roman,Times,serif;\">An attribute on a&nbsp;<a href=\"#term-model\">model</a>; a given field usually maps directly to a single database column.See&nbsp;<a href=\"topics/db/models.html\">Models</a>.</span></dt>\r\n\t<dt id=\"term-generic-view\"><span style=\"font-family:Times New Roman,Times,serif;\">generic view</span></dt>\r\n\t<dd>\r\n\t<p>A higher-order&nbsp;<a href=\"#term-view\">view</a>&nbsp;function that provides an abstract/generic implementation of a common idiom or pattern found in view development.See&nbsp;<a href=\"topics/class-based-views/index.html\">Class-based views</a>.modelModels store your application&rsquo;s data.See&nbsp;<a href=\"topics/db/models.html\">Models</a>.</p>\r\n\t</dd>\r\n\t<dd>\r\n\t<p>MTV</p>\r\n\r\n\t<p>&ldquo;Model-template-view&rdquo;; a software pattern, similar in style to MVC, but a better description of the way Django does things. See&nbsp;<a href=\"faq/general.html#faq-mtv\">the FAQ entry</a>.&nbsp;MVC&nbsp;<a href=\"https://en.wikipedia.org/wiki/Model-view-controller\">Model-view-controller</a>; a software pattern. Django&nbsp;<a href=\"faq/general.html#faq-mtv\">follows MVC to some extent</a>.</p>\r\n\t</dd>\r\n\t<dt id=\"term-project\">project</dt>\r\n</dl>",
+        "status": "D",
+        "creator": 1,
+        "publish": "2017-08-15",
+        "created": "2017-08-14T13:44:25.666Z",
+        "updated": "2017-08-14T13:44:25.850Z",
+        "updator": null
+    }
+},
+{
+    "model": "articles.article",
+    "pk": 9,
+    "fields": {
+        "title": "powerful data",
+        "slug": "powerful-data-2",
+        "content": "<h1>Glossary</h1>\r\n\r\n<dl>\r\n\t<dt id=\"term-concrete-model\">concrete model</dt>\r\n\t<dd>A non-abstract (<a href=\"ref/models/options.html#django.db.models.Options.abstract\" title=\"django.db.models.Options.abstract\"><code>abstract=False</code></a>) model.</dd>\r\n\t<dt id=\"term-field\">field</dt>\r\n\t<dt><span style=\"font-family:Times New Roman,Times,serif;\">An attribute on a&nbsp;<a href=\"#term-model\">model</a>; a given field usually maps directly to a single database column.See&nbsp;<a href=\"topics/db/models.html\">Models</a>.</span></dt>\r\n\t<dt id=\"term-generic-view\"><span style=\"font-family:Times New Roman,Times,serif;\">generic view</span></dt>\r\n\t<dd>\r\n\t<p>A higher-order&nbsp;<a href=\"#term-view\">view</a>&nbsp;function that provides an abstract/generic implementation of a common idiom or pattern found in view development.See&nbsp;<a href=\"topics/class-based-views/index.html\">Class-based views</a>.modelModels store your application&rsquo;s data.See&nbsp;<a href=\"topics/db/models.html\">Models</a>.</p>\r\n\t</dd>\r\n\t<dd>\r\n\t<p>MTV</p>\r\n\r\n\t<p>&ldquo;Model-template-view&rdquo;; a software pattern, similar in style to MVC, but a better description of the way Django does things. See&nbsp;<a href=\"faq/general.html#faq-mtv\">the FAQ entry</a>.&nbsp;MVC&nbsp;<a href=\"https://en.wikipedia.org/wiki/Model-view-controller\">Model-view-controller</a>; a software pattern. Django&nbsp;<a href=\"faq/general.html#faq-mtv\">follows MVC to some extent</a>.</p>\r\n\t</dd>\r\n\t<dt id=\"term-project\">project</dt>\r\n</dl>",
+        "status": "D",
+        "creator": 1,
+        "publish": "2017-08-15",
+        "created": "2017-08-14T13:47:15.198Z",
+        "updated": "2017-08-14T13:47:15.393Z",
+        "updator": null
+    }
+},
+{
+    "model": "articles.article",
+    "pk": 10,
+    "fields": {
+        "title": "Google io Africa",
+        "slug": "google-io-africa",
+        "content": "<dl>\r\n\t<dd>A Python package &ndash; i.e. a directory of code &ndash; that contains all the settings for an instance of Django. This would include database configuration, Django-specific options and application-specific settings.</dd>\r\n\t<dt id=\"term-property\">property</dt>\r\n\t<dd>\r\n\t<p>Also known as &ldquo;managed attributes&rdquo;, and a feature of Python since version 2.2. This is a neat way to implement attributes whose usage resembles attribute access, but whose implementation uses method calls.</p>\r\n\r\n\t<p>See&nbsp;<a href=\"https://docs.python.org/3/library/functions.html#property\" title=\"(in Python v3.6)\"><code>property</code></a>.</p>\r\n\t</dd>\r\n\t<dt id=\"term-queryset\">queryset</dt>\r\n\t<dd>\r\n\t<p>An object representing some set of rows to be fetched from the database.</p>\r\n\r\n\t<p>See&nbsp;<a href=\"topics/db/queries.html\">Makin</a></p>\r\n\t</dd>\r\n</dl>",
+        "status": "D",
+        "creator": 1,
+        "publish": "2017-08-15",
+        "created": "2017-08-14T13:48:21.632Z",
+        "updated": "2017-08-14T13:48:21.864Z",
+        "updator": null
+    }
+},
+{
+    "model": "articles.article",
+    "pk": 11,
+    "fields": {
+        "title": "Google io Africa",
+        "slug": "google-io-africa-2",
+        "content": "<pre>\r\ntags </pre>\r\n\r\n<dl>\r\n\t<dd>A Python package &ndash; i.e. a directory of code &ndash; that contains all the settings for an instance of Django. This would include database configuration, Django-specific options and application-specific settings.</dd>\r\n\t<dt id=\"term-property\">property</dt>\r\n\t<dd>\r\n\t<p>Also known as &ldquo;managed attributes&rdquo;, and a feature of Python since version 2.2. This is a neat way to implement attributes whose usage resembles attribute access, but whose implementation uses method calls.</p>\r\n\r\n\t<p>See&nbsp;<a href=\"https://docs.python.org/3/library/functions.html#property\" title=\"(in Python v3.6)\"><code>property</code></a>.</p>\r\n\t</dd>\r\n\t<dt id=\"term-queryset\">queryset</dt>\r\n\t<dd>\r\n\t<p>An object representing some set of rows to be fetched from the database.</p>\r\n\r\n\t<p>See&nbsp;<a href=\"topics/db/queries.html\">Makin</a></p>\r\n\t</dd>\r\n</dl>",
+        "status": "D",
+        "creator": 1,
+        "publish": "2017-08-15",
+        "created": "2017-08-14T13:49:47.919Z",
+        "updated": "2017-08-14T13:49:48.110Z",
+        "updator": null
+    }
+},
+{
+    "model": "articles.article",
+    "pk": 12,
+    "fields": {
+        "title": "Google io Africa",
+        "slug": "google-io-africa-3",
+        "content": "<pre>\r\ntags </pre>\r\n\r\n<dl>\r\n\t<dd>A Python package &ndash; i.e. a directory of code &ndash; that contains all the settings for an instance of Django. This would include database configuration, Django-specific options and application-specific settings.</dd>\r\n\t<dt id=\"term-property\">property</dt>\r\n\t<dd>\r\n\t<p>Also known as &ldquo;managed attributes&rdquo;, and a feature of Python since version 2.2. This is a neat way to implement attributes whose usage resembles attribute access, but whose implementation uses method calls.</p>\r\n\r\n\t<p>See&nbsp;<a href=\"https://docs.python.org/3/library/functions.html#property\" title=\"(in Python v3.6)\"><code>property</code></a>.</p>\r\n\t</dd>\r\n\t<dt id=\"term-queryset\">queryset</dt>\r\n\t<dd>\r\n\t<p>An object representing some set of rows to be fetched from the database.</p>\r\n\r\n\t<p>See&nbsp;<a href=\"topics/db/queries.html\">Makin</a></p>\r\n\t</dd>\r\n</dl>",
+        "status": "D",
+        "creator": 1,
+        "publish": "2017-08-15",
+        "created": "2017-08-14T13:50:36.520Z",
+        "updated": "2017-08-14T13:50:36.719Z",
+        "updator": null
+    }
+},
+{
+    "model": "articles.article",
+    "pk": 13,
+    "fields": {
+        "title": "Google io Africa",
+        "slug": "google-io-africa-4",
+        "content": "<pre>\r\ntags </pre>\r\n\r\n<dl>\r\n\t<dd>A Python package &ndash; i.e. a directory of code &ndash; that contains all the settings for an instance of Django. This would include database configuration, Django-specific options and application-specific settings.</dd>\r\n\t<dt id=\"term-property\">property</dt>\r\n\t<dd>\r\n\t<p>Also known as &ldquo;managed attributes&rdquo;, and a feature of Python since version 2.2. This is a neat way to implement attributes whose usage resembles attribute access, but whose implementation uses method calls.</p>\r\n\r\n\t<p>See&nbsp;<a href=\"https://docs.python.org/3/library/functions.html#property\" title=\"(in Python v3.6)\"><code>property</code></a>.</p>\r\n\t</dd>\r\n\t<dt id=\"term-queryset\">queryset</dt>\r\n\t<dd>\r\n\t<p>An object representing some set of rows to be fetched from the database.</p>\r\n\r\n\t<p>See&nbsp;<a href=\"topics/db/queries.html\">Makin</a></p>\r\n\t</dd>\r\n</dl>",
+        "status": "D",
+        "creator": 1,
+        "publish": "2017-08-15",
+        "created": "2017-08-14T13:51:16.335Z",
+        "updated": "2017-08-14T13:51:16.524Z",
+        "updator": null
+    }
+},
+{
+    "model": "articles.article",
+    "pk": 14,
+    "fields": {
+        "title": "Google io Africa",
+        "slug": "google-io-africa-5",
+        "content": "<pre>\r\ntags </pre>\r\n\r\n<dl>\r\n\t<dd>A Python package &ndash; i.e. a directory of code &ndash; that contains all the settings for an instance of Django. This would include database configuration, Django-specific options and application-specific settings.</dd>\r\n\t<dt id=\"term-property\">property</dt>\r\n\t<dd>\r\n\t<p>Also known as &ldquo;managed attributes&rdquo;, and a feature of Python since version 2.2. This is a neat way to implement attributes whose usage resembles attribute access, but whose implementation uses method calls.</p>\r\n\r\n\t<p>See&nbsp;<a href=\"https://docs.python.org/3/library/functions.html#property\" title=\"(in Python v3.6)\"><code>property</code></a>.</p>\r\n\t</dd>\r\n\t<dt id=\"term-queryset\">queryset</dt>\r\n\t<dd>\r\n\t<p>An object representing some set of rows to be fetched from the database.</p>\r\n\r\n\t<p>See&nbsp;<a href=\"topics/db/queries.html\">Makin</a></p>\r\n\t</dd>\r\n</dl>",
+        "status": "D",
+        "creator": 1,
+        "publish": "2017-08-15",
+        "created": "2017-08-14T13:52:44.384Z",
+        "updated": "2017-08-14T13:52:44.575Z",
+        "updator": null
+    }
+},
+{
+    "model": "articles.article",
+    "pk": 15,
+    "fields": {
+        "title": "Google io Africa",
+        "slug": "google-io-africa-6",
+        "content": "<pre>\r\ntags </pre>\r\n\r\n<dl>\r\n\t<dd>A Python package &ndash; i.e. a directory of code &ndash; that contains all the settings for an instance of Django. This would include database configuration, Django-specific options and application-specific settings.</dd>\r\n\t<dt id=\"term-property\">property</dt>\r\n\t<dd>\r\n\t<p>Also known as &ldquo;managed attributes&rdquo;, and a feature of Python since version 2.2. This is a neat way to implement attributes whose usage resembles attribute access, but whose implementation uses method calls.</p>\r\n\r\n\t<p>See&nbsp;<a href=\"https://docs.python.org/3/library/functions.html#property\" title=\"(in Python v3.6)\"><code>property</code></a>.</p>\r\n\t</dd>\r\n\t<dt id=\"term-queryset\">queryset</dt>\r\n\t<dd>\r\n\t<p>An object representing some set of rows to be fetched from the database.</p>\r\n\r\n\t<p>See&nbsp;<a href=\"topics/db/queries.html\">Makin</a></p>\r\n\t</dd>\r\n</dl>",
+        "status": "D",
+        "creator": 1,
+        "publish": "2017-08-15",
+        "created": "2017-08-14T13:53:35.632Z",
+        "updated": "2017-08-14T13:53:35.836Z",
+        "updator": null
+    }
+},
+{
+    "model": "articles.article",
+    "pk": 16,
+    "fields": {
+        "title": "Google io Africa",
+        "slug": "google-io-africa-7",
+        "content": "<pre>\r\ntags </pre>\r\n\r\n<dl>\r\n\t<dd>A Python package &ndash; i.e. a directory of code &ndash; that contains all the settings for an instance of Django. This would include database configuration, Django-specific options and application-specific settings.</dd>\r\n\t<dt id=\"term-property\">property</dt>\r\n\t<dd>\r\n\t<p>Also known as &ldquo;managed attributes&rdquo;, and a feature of Python since version 2.2. This is a neat way to implement attributes whose usage resembles attribute access, but whose implementation uses method calls.</p>\r\n\r\n\t<p>See&nbsp;<a href=\"https://docs.python.org/3/library/functions.html#property\" title=\"(in Python v3.6)\"><code>property</code></a>.</p>\r\n\t</dd>\r\n\t<dt id=\"term-queryset\">queryset</dt>\r\n\t<dd>\r\n\t<p>An object representing some set of rows to be fetched from the database.</p>\r\n\r\n\t<p>See&nbsp;<a href=\"topics/db/queries.html\">Makin</a></p>\r\n\t</dd>\r\n</dl>",
+        "status": "D",
+        "creator": 1,
+        "publish": "2017-08-15",
+        "created": "2017-08-14T13:58:22.050Z",
+        "updated": "2017-08-14T13:58:22.189Z",
+        "updator": null
+    }
+},
+{
+    "model": "articles.article",
+    "pk": 17,
+    "fields": {
+        "title": "Google io Africa",
+        "slug": "google-io-africa-8",
+        "content": "<pre>\r\ntags </pre>\r\n\r\n<dl>\r\n\t<dd>A Python package &ndash; i.e. a directory of code &ndash; that contains all the settings for an instance of Django. This would include database configuration, Django-specific options and application-specific settings.</dd>\r\n\t<dt id=\"term-property\">property</dt>\r\n\t<dd>\r\n\t<p>Also known as &ldquo;managed attributes&rdquo;, and a feature of Python since version 2.2. This is a neat way to implement attributes whose usage resembles attribute access, but whose implementation uses method calls.</p>\r\n\r\n\t<p>See&nbsp;<a href=\"https://docs.python.org/3/library/functions.html#property\" title=\"(in Python v3.6)\"><code>property</code></a>.</p>\r\n\t</dd>\r\n\t<dt id=\"term-queryset\">queryset</dt>\r\n\t<dd>\r\n\t<p>An object representing some set of rows to be fetched from the database.</p>\r\n\r\n\t<p>See&nbsp;<a href=\"topics/db/queries.html\">Makin</a></p>\r\n\t</dd>\r\n</dl>",
+        "status": "P",
+        "creator": 1,
+        "publish": "2017-08-15",
+        "created": "2017-08-14T14:00:22.980Z",
+        "updated": "2017-08-14T15:17:01.957Z",
+        "updator": null
+    }
+},
+{
+    "model": "articles.article",
+    "pk": 18,
+    "fields": {
+        "title": "Google io Africa",
+        "slug": "google-io-africa-9",
+        "content": "<pre>\r\ntags </pre>\r\n\r\n<dl>\r\n\t<dd>A Python package &ndash; i.e. a directory of code &ndash; that contains all the settings for an instance of Django. This would include database configuration, Django-specific options and application-specific settings.</dd>\r\n\t<dt id=\"term-property\">property</dt>\r\n\t<dd>\r\n\t<p>Also known as &ldquo;managed attributes&rdquo;, and a feature of Python since version 2.2. This is a neat way to implement attributes whose usage resembles attribute access, but whose implementation uses method calls.</p>\r\n\r\n\t<p>See&nbsp;<a href=\"https://docs.python.org/3/library/functions.html#property\" title=\"(in Python v3.6)\"><code>property</code></a>.</p>\r\n\t</dd>\r\n\t<dt id=\"term-queryset\">queryset</dt>\r\n\t<dd>\r\n\t<p>An object representing some set of rows to be fetched from the database.</p>\r\n\r\n\t<p>See&nbsp;<a href=\"topics/db/queries.html\">Makin</a></p>\r\n\t</dd>\r\n</dl>",
+        "status": "D",
+        "creator": 1,
+        "publish": "2017-08-15",
+        "created": "2017-08-14T14:01:12.819Z",
+        "updated": "2017-08-14T14:01:12.932Z",
+        "updator": null
+    }
+},
+{
+    "model": "articles.article",
+    "pk": 19,
+    "fields": {
+        "title": "Google io Africa",
+        "slug": "google-io-africa-10",
+        "content": "<pre>\r\ntags </pre>\r\n\r\n<dl>\r\n\t<dd>A Python package &ndash; i.e. a directory of code &ndash; that contains all the settings for an instance of Django. This would include database configuration, Django-specific options and application-specific settings.</dd>\r\n\t<dt id=\"term-property\">property</dt>\r\n\t<dd>\r\n\t<p>Also known as &ldquo;managed attributes&rdquo;, and a feature of Python since version 2.2. This is a neat way to implement attributes whose usage resembles attribute access, but whose implementation uses method calls.</p>\r\n\r\n\t<p>See&nbsp;<a href=\"https://docs.python.org/3/library/functions.html#property\" title=\"(in Python v3.6)\"><code>property</code></a>.</p>\r\n\t</dd>\r\n\t<dt id=\"term-queryset\">queryset</dt>\r\n\t<dd>\r\n\t<p>An object representing some set of rows to be fetched from the database.</p>\r\n\r\n\t<p>See&nbsp;<a href=\"topics/db/queries.html\">Makin</a></p>\r\n\t</dd>\r\n</dl>",
+        "status": "P",
+        "creator": 1,
+        "publish": "2017-08-15",
+        "created": "2017-08-14T14:03:02.143Z",
+        "updated": "2017-08-14T14:13:44.247Z",
+        "updator": null
+    }
+},
+{
+    "model": "articles.article",
+    "pk": 21,
+    "fields": {
+        "title": "git guide today",
+        "slug": "git-guide-today",
+        "content": "<header>\r\n<p>Tutorial 1: Using branch</p>\r\n\r\n<h1>7. Rebase branch</h1>\r\n</header>\r\n\r\n<p>Another approach we can take to integrate &quot;issue3&quot; branch into the master branch is by using the rebase command. Using rebase, we can streamline and clean our history tree just like how we have described earlier.</p>\r\n\r\n<p>Let&#39;s start by undoing the previous merge.</p>\r\n\r\n<pre>\r\n$ <b>git reset --hard HEAD~</b></pre>\r\n\r\n<p><img alt=\"History before rabase\" src=\"./7. Rebase branch [Tutorial 1_ Using branch] _ Git Beginner's Guide for Dummies _ Backlog_files/capture_stepup2_8_1_1.png\" /></p>\r\n\r\n<p>Switch over to &quot;issue3&quot; branch and rebase onto the master branch.</p>\r\n\r\n<pre>\r\n$ <b>git checkout issue3</b>\r\nSwitched to branch &#39;issue3&#39;\r\n$ <b>git rebase master</b>\r\nFirst, rewinding head to replay your work on top of it...\r\nApplying: append description of the pull command\r\nUsing index info to reconstruct a base tree...\r\n&lt;stdin&gt;:13: new blank line at EOF.\r\n+\r\nwarning: 1 line adds whitespace errors.\r\nFalling back to patching base and 3-way merge...\r\nAuto-merging myfile.txt\r\nCONFLICT (content): Merge conflict in myfile.txt\r\nFailed to merge in the changes.\r\nPatch failed at 0001 append description of the pull command\r\n\r\nWhen you have resolved this problem run &quot;git rebase --continue&quot;.\r\nIf you would prefer to skip this patch, instead run &quot;git rebase --skip&quot;.\r\nTo check out the original branch and stop rebasing run &quot;git rebase --abort&quot;.</pre>",
+        "status": "D",
+        "creator": 1,
+        "publish": "2017-08-15",
+        "created": "2017-08-14T14:56:49.515Z",
+        "updated": "2017-08-14T14:56:50.023Z",
+        "updator": null
+    }
+},
+{
+    "model": "articles.article",
+    "pk": 22,
+    "fields": {
+        "title": "git guide today",
+        "slug": "git-guide-today-2",
+        "content": "<pre>\r\n<code class=\"language-cs\">$ git checkout issue3\r\nSwitched to branch 'issue3'\r\n$ git rebase master\r\nFirst, rewinding head to replay your work on top of it...\r\nApplying: append description of the pull command\r\nUsing index info to reconstruct a base tree...\r\n&lt;stdin&gt;:13: new blank line at EOF.\r\n+\r\nwarning: 1 line adds whitespace errors.\r\nFalling back to patching base and 3-way merge...\r\nAuto-merging myfile.txt\r\nCONFLICT (content): Merge conflict in myfile.txt\r\nFailed to merge in the changes.\r\nPatch failed at 0001 append description of the pull command\r\n\r\nWhen you have resolved this problem run \"git rebase --continue\".\r\nIf you would prefer to skip this patch, instead run \"git rebase --skip\".\r\nTo check out the original branch and stop rebasing run \"git rebase --abort\".</code></pre>\r\n\r\n<p>&nbsp;</p>",
+        "status": "D",
+        "creator": 1,
+        "publish": "2017-08-15",
+        "created": "2017-08-14T15:07:40.539Z",
+        "updated": "2017-08-14T15:07:40.981Z",
+        "updator": null
+    }
+},
+{
+    "model": "articles.article",
+    "pk": 23,
+    "fields": {
+        "title": "watu wetu",
+        "slug": "watu-wetu",
+        "content": "<p>So much has changed between Python 2 and Python 3, there are vanishingly few programs that will run unmodified under both. But don&rsquo;t despair! To help with this transition, Python 3 comes with a utility script called&nbsp;<code>2to3</code>, which takes your actual Python 2 source code as input and auto-converts as much as it can to Python 3.&nbsp;<a href=\"http://www.diveintopython3.net/case-study-porting-chardet-to-python-3.html#running2to3\">Case study: porting&nbsp;<code>chardet</code>&nbsp;to Python 3</a>&nbsp;describes how to run the&nbsp;<code>2to3</code>&nbsp;script, then shows some things it can&rsquo;t fix automatically. This appendix documents what it&nbsp;<em>can</em>&nbsp;fix automatically.</p>\r\n\r\n<h2 id=\"print\"><code>print</code>&nbsp;statement<a href=\"http://www.diveintopython3.net/porting-code-to-python-3-with-2to3.html#print\">#</a><a href=\"#print\">#</a></h2>\r\n\r\n<p>In Python 2,&nbsp;<code><dfn>print</dfn></code>&nbsp;was a statement. Whatever you wanted to print simply followed the&nbsp;<code>print</code>&nbsp;keyword. In Python 3,&nbsp;<a href=\"http://www.diveintopython3.net/your-first-python-program.html#divingin\"><code>print()</code>&nbsp;is a function</a>. Whatever you want to print, pass it to&nbsp;<code>print()</code>&nbsp;like any other function.</p>\r\n\r\n<table>\r\n\t<tbody>\r\n\t\t<tr>\r\n\t\t\t<th>Notes</th>\r\n\t\t\t<th>Python 2</th>\r\n\t\t\t<th>Python 3</th>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<th>\u2460</th>\r\n\t\t\t<td><code>print</code></td>\r\n\t\t\t<td><code>print()</code></td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<th>\u2461</th>\r\n\t\t\t<td><code>print&nbsp;1</code></td>\r\n\t\t\t<td><code>print(1)</code></td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<th>\u2462</th>\r\n\t\t\t<td><code>print&nbsp;1,&nbsp;2</code></td>\r\n\t\t\t<td><code>print(1,&nbsp;2)</code></td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<th>\u2463</th>\r\n\t\t\t<td><code>print&nbsp;1,&nbsp;2,</code></td>\r\n\t\t\t<td><code>print(1,&nbsp;2,&nbsp;end=&#39; &#39;)</code></td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>",
+        "status": "D",
+        "creator": 1,
+        "publish": "2017-08-15",
+        "created": "2017-08-14T17:07:18.576Z",
+        "updated": "2017-08-14T17:07:19.112Z",
+        "updator": null
+    }
+},
+{
+    "model": "articles.article",
+    "pk": 24,
+    "fields": {
+        "title": "hello world",
+        "slug": "hello-world",
+        "content": "<p>klklljk</p>",
+        "status": "D",
+        "creator": 1,
+        "publish": "2017-08-15",
+        "created": "2017-08-15T05:38:53.454Z",
+        "updated": "2017-08-15T05:38:53.998Z",
+        "updator": null
+    }
+}
+]

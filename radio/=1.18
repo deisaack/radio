@@ -1,0 +1,6 @@
+Collecting django
+  Using cached Django-1.11.3-py2.py3-none-any.whl
+Collecting pytz (from django)
+  Using cached pytz-2017.2-py2.py3-none-any.whl
+Installing collected packages: pytz, django
+Successfully installed django-1.11.3 pytz-2017.2

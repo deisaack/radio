@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <br><br>
+    <hr>
+{% for article in tag_list %}
+    <a href="{{ article.get_absolute_url }}">{{ article }}</a> <br>
+{% endfor %}
+{% endblock content %}

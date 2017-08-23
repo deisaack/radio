@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{ article.title }} <small>{{ article.publish }}</small> </h2>
+
+    <hr>
+    {% for tag in tags %}
+        <pre><a href="{% url 'articles:tag_detail' tag.name %}">{{ tag.name }}</a></pre>
+    {% endfor %}
+    
+    {{ article.content|safe }}
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    <br><br><br>
+    <hr>
+{% for day in day_list %}
+    <a href="{{ day.get_absolute_url }}">{{ day }}</a><br>
+{% endfor %}
+
+{% endblock content %}
